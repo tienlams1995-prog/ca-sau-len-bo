@@ -1,0 +1,19 @@
+# Cấu hình deploy lên Render (Blueprint). Hướng dẫn: docs/07-deploy.md
+# Một dịch vụ duy nhất: server Express vừa trả API (/api/...) vừa trả giao diện React đã build.
+services:
+  - type: web
+    name: ca-sau-len-bo
+    runtime: node
+    plan: free
+    region: singapore
+    # Cài thư viện -> build giao diện -> tạo/cập nhật bảng trong database (chạy lại nhiều lần vẫn an toàn)
+    buildCommand: npm ci && npm run build && npm run db:init
+    startCommand: npm start -w server
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATABASE_URL # dán chuỗi kết nối Supabase (Session pooler) khi Render hỏi
+        sync: false
+      - key: JWT_SECRET # Render tự sinh một khóa ngẫu nhiên
+        generateValue: true

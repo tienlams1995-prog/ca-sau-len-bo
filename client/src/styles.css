@@ -1,0 +1,124 @@
+/*
+ * FILE: client/src/styles.css — GIAO DIỆN (CSS)
+ * Màu sắc khai báo một lần ở :root (biến CSS) để dễ đổi theme.
+ */
+:root {
+  --bg: #f3f7f2;
+  --surface: #ffffff;
+  --text: #1f2a1f;
+  --muted: #63705f;
+  --primary: #2f8a3e;
+  --primary-hover: #26722f;
+  --border: #dde5da;
+  --danger: #c0392b;
+  --highlight: #fff6d6;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); }
+a { color: var(--primary); }
+
+/* ---------- Thanh điều hướng ---------- */
+.navbar {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  padding: 12px 16px; background: var(--surface); border-bottom: 1px solid var(--border);
+}
+.navbar .brand { font-weight: 800; font-size: 1.2rem; text-decoration: none; color: var(--text); }
+.navbar nav { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.navbar nav a { text-decoration: none; color: var(--muted); font-weight: 500; }
+.navbar nav a.active { color: var(--primary); }
+
+.container { max-width: 880px; margin: 0 auto; padding: 24px 16px 48px; }
+
+/* ---------- Nút ---------- */
+.btn {
+  display: inline-block; border: none; border-radius: 10px; cursor: pointer;
+  background: var(--primary); color: #fff !important; font-weight: 600; font-size: 1rem;
+  padding: 10px 20px; text-decoration: none;
+}
+.btn:hover { background: var(--primary-hover); }
+.btn:disabled { opacity: 0.6; cursor: default; }
+.btn-large { padding: 14px 32px; font-size: 1.15rem; }
+.btn-small { padding: 6px 14px; font-size: 0.9rem; }
+.btn-ghost { background: transparent; color: var(--primary) !important; border: 1px solid var(--primary); }
+.btn-ghost:hover { background: var(--highlight); }
+.link-button { background: none; border: none; color: var(--muted); cursor: pointer; font: inherit; padding: 0; }
+
+/* ---------- Thẻ, chữ ---------- */
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  padding: 20px; margin-bottom: 20px;
+}
+.center { text-align: center; }
+.muted { color: var(--muted); }
+.error { color: var(--danger); }
+.lead { font-size: 1.15rem; color: var(--muted); }
+
+.hero { text-align: center; padding: 24px 0 32px; }
+.hero h1 { font-size: 2.6rem; margin: 0 0 8px; }
+.rules { line-height: 1.9; padding-left: 4px; list-style: none; }
+
+/* ---------- Trang chơi ---------- */
+.difficulty-list { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 16px 0; }
+.difficulty {
+  display: flex; flex-direction: column; gap: 4px; min-width: 150px; padding: 14px;
+  border: 2px solid var(--border); border-radius: 12px; background: var(--surface); cursor: pointer; font: inherit;
+}
+.difficulty span { font-size: 0.85rem; color: var(--muted); }
+.difficulty.active { border-color: var(--primary); background: var(--highlight); }
+
+.game-wrap { margin-bottom: 16px; }
+.game-canvas {
+  display: block; width: 100%; height: auto; border-radius: 14px;
+  touch-action: none; /* không cuộn trang khi chạm vào game trên điện thoại */
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+}
+.actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+
+/* ---------- Bảng ---------- */
+.tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.tabs button {
+  border: 1px solid var(--border); background: var(--surface); border-radius: 999px;
+  padding: 6px 16px; cursor: pointer; font: inherit;
+}
+.tabs button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { padding: 8px 6px; border-bottom: 1px solid var(--border); text-align: left; }
+.table th { color: var(--muted); font-weight: 600; font-size: 0.9rem; }
+.table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.table tr.me { background: var(--highlight); }
+
+/* ---------- Form ---------- */
+.auth-form { max-width: 380px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.auth-form label { display: flex; flex-direction: column; gap: 6px; font-weight: 500; }
+.auth-form input {
+  padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font: inherit;
+}
+
+/* ---------- Hồ sơ ---------- */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.stat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; text-align: center; }
+.stat-value { font-size: 1.6rem; font-weight: 800; color: var(--primary); }
+.stat-label { color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .table { font-size: 0.85rem; }
+  .hero h1 { font-size: 2rem; }
+}
+
+/* ---------- Avatar nhân vật ---------- */
+.avatar-picker { margin: 8px 0 20px; }
+.avatar-picker h3 { margin: 0 0 4px; }
+.avatar-list { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+.avatar-item {
+  display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 120px;
+  padding: 12px; border: 1px solid var(--border); border-radius: 12px;
+}
+.avatar-preview {
+  width: 64px; height: 64px; border-radius: 50%; overflow: hidden; display: grid; place-items: center;
+  background: var(--highlight); border: 2px solid var(--border); font-size: 2rem;
+}
+.avatar-preview img { width: 100%; height: 100%; object-fit: cover; }

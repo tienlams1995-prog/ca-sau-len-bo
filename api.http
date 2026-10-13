@@ -1,0 +1,78 @@
+###############################################################
+#  THỬ API NGAY TRONG VS CODE
+#  1. Cài extension "REST Client" (humao.rest-client)
+#  2. Chạy server:  npm run dev
+#  3. Bấm chữ "Send Request" hiện phía trên mỗi request bên dưới
+#  Kết quả hiện ở cửa sổ bên phải. Các request cách nhau bởi ###
+###############################################################
+
+@host = http://localhost:4000/api
+
+### 1. Kiểm tra server còn sống
+GET {{host}}/health
+
+### 2. Đăng ký tài khoản mới
+# @name register
+POST {{host}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "nguoichoi1",
+  "password": "matkhau123",
+  "displayName": "Người chơi 1"
+}
+
+### 3. Đăng nhập (lấy token)
+# @name login
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "nguoichoi1",
+  "password": "matkhau123"
+}
+
+### Lưu token từ request đăng nhập ở trên để dùng cho các request sau
+@token = {{login.response.body.token}}
+
+### 4. Xem thông tin bản thân (cần token)
+GET {{host}}/auth/me
+Authorization: Bearer {{token}}
+
+### 5. Danh sách độ khó
+GET {{host}}/difficulties
+
+### 6. Lưu một ván chơi: 3 lần qua sông, sống 20.5 giây
+#    score phải = 3*10 + 20 = 50, nếu sai server trả lỗi 422
+POST {{host}}/matches
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "difficultyId": 1,
+  "crossings": 3,
+  "survivedMs": 20500,
+  "score": 50
+}
+
+### 7. Thử gian lận -> mong đợi lỗi 422
+POST {{host}}/matches
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "difficultyId": 1,
+  "crossings": 999,
+  "survivedMs": 1000,
+  "score": 9991
+}
+
+### 8. Lịch sử ván của tôi
+GET {{host}}/matches/me
+Authorization: Bearer {{token}}
+
+### 9. Bảng xếp hạng mức Dễ
+GET {{host}}/leaderboard?difficulty=1&limit=10
+
+### 10. Thống kê người chơi id = 1
+GET {{host}}/users/1/stats

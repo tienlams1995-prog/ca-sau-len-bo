@@ -1,0 +1,23 @@
+{
+  "name": "ca-sau-len-bo",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Web game dân gian Cá Sấu Lên Bờ — React + Express + PostgreSQL",
+  "workspaces": [
+    "shared",
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,green \"npm run dev -w server\" \"npm run dev -w client\"",
+    "db:init": "npm run db:init -w server",
+    "build": "npm run build -w client",
+    "test": "npm test -w shared && npm test -w server"
+  },
+  "devDependencies": {
+    "concurrently": "9.1.2"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

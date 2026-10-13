@@ -1,0 +1,44 @@
+{
+  // Cấu hình nút "Run and Debug" (Ctrl+Shift+D) trong VS Code.
+  // Chọn một mục trong danh sách thả xuống rồi nhấn F5.
+  // Đặt breakpoint: bấm vào lề trái cạnh số dòng (hiện chấm đỏ),
+  // khi code chạy tới dòng đó sẽ dừng lại để bạn xem giá trị biến.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Server: debug (Express)",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/server",
+      "program": "${workspaceFolder}/server/src/index.js",
+      "runtimeArgs": ["--env-file-if-exists=.env"],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Test: server API",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/server",
+      "runtimeArgs": ["--test"],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Test: logic game",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/shared",
+      "runtimeArgs": ["--test"],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Client: mở Chrome để debug React",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/client"
+    }
+  ]
+}

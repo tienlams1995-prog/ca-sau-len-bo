@@ -1,0 +1,8 @@
+{
+  // VS Code sẽ hiện thông báo gợi ý cài các extension này khi mở dự án.
+  "recommendations": [
+    "humao.rest-client",          // Gửi request thử API ngay trong file api.http
+    "cweijan.vscode-postgresql-client2", // Xem bảng & chạy SQL trong VS Code
+    "esbenp.prettier-vscode"      // Tự căn chỉnh code cho đẹp
+  ]
+}
