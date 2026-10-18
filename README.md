@@ -28,14 +28,14 @@ npm run db:init                  # tạo bảng + dữ liệu mẫu
 npm run dev                      # chạy server (4000) + client (5173)
 ```
 
-Mở http://localhost:5173 để chơi.
+Mở http://localhost:5173 để chơi, hoặc http://localhost:4000/api/docs để bấm thử từng API.
 
 ## 🧪 Kiểm thử
 
 ```bash
 npm test
 ```
-Chạy 19 test tự động: 11 cho logic game, 8 cho API. Phần test API dùng database giả lập nên không cần PostgreSQL.
+Chạy 20 test tự động: 11 cho logic game, 9 cho API. Phần test API dùng database giả lập nên không cần PostgreSQL.
 
 ## 🗂️ Cấu trúc thư mục
 

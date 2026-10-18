@@ -158,3 +158,23 @@ test('avatar: lưu, đọc, thay, xóa, và từ chối ảnh không hợp lệ'
   assert.equal((await request(app).delete('/api/avatars/croc').set(auth)).status, 204);
   assert.equal((await request(app).get('/api/avatars/me').set(auth)).body.croc, null);
 });
+
+test('trang thử API (Swagger) và bản đặc tả OpenAPI', async () => {
+  const app = await setup();
+  const page = await request(app).get('/api/docs');
+  assert.equal(page.status, 200);
+  assert.match(page.text, /swagger-ui/);
+
+  const spec = await request(app).get('/api/openapi.json');
+  assert.equal(spec.status, 200);
+  assert.ok(spec.body.paths['/matches'].post, 'đặc tả phải có API lưu ván');
+
+  // Ví dụ trong đặc tả phải là dữ liệu hợp lệ: bấm Execute là lưu được ngay
+  const example = spec.body.paths['/matches'].post.requestBody.content['application/json'].example;
+  const { token } = await registerUser(app, 'swagger');
+  const saved = await request(app).post('/api/matches').set('Authorization', `Bearer ${token}`).send(example);
+  assert.equal(saved.status, 201);
+
+  const asset = await request(app).get('/api/docs/assets/swagger-ui-bundle.js');
+  assert.equal(asset.status, 200);
+});

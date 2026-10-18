@@ -16,7 +16,8 @@
     "cors": "2.8.5",
     "express": "5.1.0",
     "jsonwebtoken": "9.0.2",
-    "pg": "8.13.1"
+    "pg": "8.13.1",
+    "swagger-ui-dist": "5.17.14"
   },
   "devDependencies": {
     "pg-mem": "3.0.5",

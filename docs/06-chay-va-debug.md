@@ -64,7 +64,8 @@ Muốn dừng thì bấm `Ctrl + C` trong terminal.
 - Hoặc chọn **"Client: mở Chrome để debug React"** trong VS Code để đặt breakpoint ngay trong file `.jsx`.
 
 ### Thử API không cần giao diện
-Mở [`api.http`](../api.http) và bấm **Send Request** phía trên từng request.
+Dễ nhất: mở **http://localhost:4000/api/docs**, chọn API và bấm **Execute** (xem [03-backend-api.md](03-backend-api.md)).
+Hoặc mở [`api.http`](../api.http) và bấm **Send Request** phía trên từng request.
 
 ### Chạy test
 ```bash

@@ -45,7 +45,13 @@ Request ─▶ cors ─▶ express.json ─▶ [requireAuth] ─▶ route handle
 | PUT | `/api/avatars/:character` | ✅ | `{ image: "data:image/jpeg;base64,..." }` | `{ character, image }` |
 | DELETE | `/api/avatars/:character` | ✅ | | 204 (không có nội dung) |
 
-👉 Thử tất cả trong VS Code bằng file [`api.http`](../api.http) (cần extension REST Client).
+👉 **Cách dễ nhất để thử API:** chạy `npm run dev` rồi mở **http://localhost:4000/api/docs** (trang Swagger).
+Bấm vào một API → sửa dữ liệu nếu muốn → bấm **Execute**. Gọi *Đăng nhập* hoặc *Đăng ký* trước,
+trang sẽ tự lưu token cho các API có ổ khóa 🔒. Nội dung trang lấy từ
+[`server/src/docs/openapi.js`](../server/src/docs/openapi.js): thêm/sửa API thì nhớ cập nhật file này.
+
+👉 Cách khác: trong VS Code dùng file [`api.http`](../api.http) (extension REST Client), hoặc Postman:
+**Import** địa chỉ `http://localhost:4000/api/openapi.json` là có sẵn toàn bộ request.
 
 ## Mã trạng thái HTTP được dùng
 

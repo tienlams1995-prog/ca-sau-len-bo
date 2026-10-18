@@ -5,6 +5,7 @@
  *   1. cors()          cho phép front-end (khác cổng) gọi API
  *   2. express.json()  đọc body JSON của request vào req.body
  *   3. các router      mỗi nhóm API nằm trong một file ở routes/
+ *                      (+ trang thử API /api/docs ở docs/router.js)
  *   4. 404             API không tồn tại
  *   5. errorHandler    bắt mọi lỗi (PHẢI đặt cuối cùng)
  *   6. clientDir       (khi deploy) trả luôn giao diện React đã build,
@@ -25,6 +26,7 @@ import { matchesRouter } from './routes/matches.js';
 import { leaderboardRouter } from './routes/leaderboard.js';
 import { usersRouter } from './routes/users.js';
 import { avatarsRouter } from './routes/avatars.js';
+import { docsRouter } from './docs/router.js';
 import { errorHandler } from './middleware/error.js';
 
 export function createApp({ db, jwtSecret, corsOrigin, clientDir }) {
@@ -43,6 +45,8 @@ export function createApp({ db, jwtSecret, corsOrigin, clientDir }) {
   app.use('/api/leaderboard', leaderboardRouter(deps));
   app.use('/api/users', usersRouter(deps));
   app.use('/api/avatars', avatarsRouter(deps));
+  // Trang thử API: http://localhost:4000/api/docs (xem docs/router.js)
+  app.use('/api', docsRouter());
 
   app.use('/api', (_req, res) => res.status(404).json({ error: 'Không tìm thấy API này' }));
   app.use(errorHandler);
